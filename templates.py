@@ -17,14 +17,14 @@ TEMPLATES["modern_clean"] = r"""
 <meta charset="utf-8">
 <style>
   :root { --text:#1f2937; --muted:#6b7280; --accent:#111827; }
-  body { margin:0; font-family: Inter, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: var(--text); font-size: 10px; }
-  .page { padding: 36px 44px; }
-  h1 { font-size: 24px; margin: 0 0 2px; font-weight: 700; letter-spacing: .2px; }
-  .titleline { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
-  .contact { font-size: 10px; color: var(--muted); margin-bottom: 14px; }
-  h2 { font-size: 10px; letter-spacing: .6px; text-transform: uppercase; color: var(--accent); margin: 18px 0 8px; border-bottom: 1px solid #e5e7eb; padding-bottom:4px;}
-  .role { font-weight:600; font-size: 11px; }
-  .meta { color: var(--muted); font-size: 10px; }l
+          body { margin:0; font-family: Inter, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: var(--text); font-size: 11px; background: #fff; }
+          .page { padding: 36px 44px; background: #fff; }
+          h1 { font-size: 26px; margin: 0 0 2px; font-weight: 700; letter-spacing: .2px; }
+          .titleline { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+          .contact { font-size: 11px; color: var(--muted); margin-bottom: 14px; }
+          h2 { font-size: 11px; letter-spacing: .6px; text-transform: uppercase; color: var(--accent); margin: 18px 0 8px; border-bottom: 1px solid #e5e7eb; padding-bottom:4px;}
+          .role { font-weight:600; font-size: 12px; }
+          .meta { color: var(--muted); font-size: 11px; }l
   ul { margin: 6px 0 8px 18px; }
   li { margin: 2px 0; }
   .cols { display:grid; grid-template-columns: 2fr 1fr; gap: 24px; }
@@ -115,14 +115,14 @@ TEMPLATES["modern_clean"] = r"""
 TEMPLATES["classic_serif"] = r"""
 <!doctype html>
 <html><head><meta charset="utf-8">
-<style>
-  body { margin:0; font-family: "Georgia", "Times New Roman", serif; color:#222; font-size: 10px; }
-  .page { padding: 42px 50px; }
-  h1 { margin:0 0 4px; font-size:26px; font-weight:700; letter-spacing:.2px; }
-  .rule { height:1px; background:#000; margin:8px 0 12px; }
-  .muted { color:#555; font-size:10px; }
-  h2 { font-size:11px; margin: 14px 0 6px; text-transform:uppercase; letter-spacing:.6px; }
-  li { margin: 3px 0; }
+        <style>
+          body { margin:0; font-family: "Georgia", "Times New Roman", serif; color:#222; font-size: 11px; }
+          .page { padding: 42px 50px; }
+          h1 { margin:0 0 4px; font-size:28px; font-weight:700; letter-spacing:.2px; }
+          .rule { height:1px; background:#000; margin:8px 0 12px; }
+          .muted { color:#555; font-size:11px; }
+          h2 { font-size:12px; margin: 14px 0 6px; text-transform:uppercase; letter-spacing:.6px; }
+          li { margin: 3px 0; }
 </style></head>
 <body><div class="page">
   <h1>{{ data.name or "J. McJobface" }}</h1>
@@ -158,14 +158,14 @@ TEMPLATES["classic_serif"] = r"""
 TEMPLATES["compact_two_col"] = r"""
 <!doctype html>
 <html><head><meta charset="utf-8">
-<style>
-  body { margin:0; font-family: "Inter", system-ui, -apple-system; color:#222; font-size: 10px; }
-  .page { padding: 28px 32px; }
-  .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  h1 { margin:0; font-size:22px; font-weight:800; }
-  .muted { color:#666; font-size:10px; margin-bottom:6px; }
-  h2 { font-size:10px; margin: 12px 0 6px; text-transform:uppercase; letter-spacing:.6px; }
-  ul { margin:6px 0 8px 18px; }
+        <style>
+          body { margin:0; font-family: "Inter", system-ui, -apple-system; color:#222; font-size: 11px; }
+          .page { padding: 28px 32px; }
+          .grid { display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+          h1 { margin:0; font-size:24px; font-weight:800; }
+          .muted { color:#666; font-size:11px; margin-bottom:6px; }
+          h2 { font-size:11px; margin: 12px 0 6px; text-transform:uppercase; letter-spacing:.6px; }
+          ul { margin:6px 0 8px 18px; }
 </style></head>
 <body><div class="page">
   <h1>{{ data.name or "Lorem Ipsum" }}</h1>

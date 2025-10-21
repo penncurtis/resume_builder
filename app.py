@@ -65,13 +65,12 @@ def normalize_resume(d):
     return d
 
 # ---------- TITLE ----------
-st.markdown('<div class="title-bar">🤖 AI Resume Builder</div>', unsafe_allow_html=True)
 
 # ---------- CSS ----------
 st.markdown("""
 <style>
 /* Page background */
-html, body, .stApp, .main { background: #e9ecf1 !important; }
+html, body, .stApp, .main { background: #87CEEB !important; }
 
 /* Make top split full-height */
 [data-testid="stHorizontalBlock"] { height: 100vh !important; }
@@ -197,6 +196,11 @@ html, body, .stApp, .main { background: #e9ecf1 !important; }
           overflow:hidden !important;
           position: relative !important;
         }
+        
+        /* Force iframe content to have white background */
+        [data-testid="stElementContainer"]:has(> .doc-anchor) iframe {
+          background:#fff !important;
+        }
 
 /* Add document-like styling */
 [data-testid="stElementContainer"]:has(> .doc-anchor) > div:nth-child(2)::before {
@@ -214,7 +218,8 @@ html, body, .stApp, .main { background: #e9ecf1 !important; }
         [data-testid="stElementContainer"]:has(> .doc-anchor) iframe {
           width:100% !important;
           height:1056px !important;             /* exactly 11 inches at 96dpi */
-          background:#fff;
+          background:#fff !important;
+          border: none !important;
         }
 
         /* Alternative selector for the resume container */
@@ -231,11 +236,12 @@ html, body, .stApp, .main { background: #e9ecf1 !important; }
           box-shadow: 0 8px 32px rgba(0,0,0,0.15) !important;
         }
 
-/* Optional fixed site title */
+/* Fixed site title */
 .title-bar{
   position:fixed; top:0; left:0; width:100%;
   padding:16px 40px; background:#fff; border-bottom:1px solid #d9dee2;
-  font-size:22px; font-weight:700; z-index:999; box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  font-size:22px; font-weight:700; z-index:9999; box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  color: #333;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -266,8 +272,8 @@ def init_state():
 init_state()
 
 # ---------- SPLIT LAYOUT ----------
-# (Optional) Title
-st.markdown('<div class="title-bar">AI Resume Builder</div>', unsafe_allow_html=True)
+# Title - using st.title instead of custom HTML
+st.title("🤖 AI Resume Builder")
 
 col_left, col_right = st.columns([1,1], gap="small")
 
@@ -288,7 +294,7 @@ with col_left:
     
     chat_html += '</div></div>'
     
-    # Add JavaScript to auto-scroll to bottom
+    # Add JavaScript to auto-scroll to bottom and handle Enter key
     chat_html += '''
     <script>
     // Auto-scroll to bottom when new messages are added
@@ -302,6 +308,20 @@ with col_left:
     // Scroll to bottom on page load and when messages change
     window.addEventListener('load', scrollToBottom);
     setTimeout(scrollToBottom, 100); // Small delay to ensure content is rendered
+    
+    // Handle Enter key to submit form
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            // Find the text area and submit button
+            const textArea = document.querySelector('textarea[placeholder*="product designer"]');
+            const submitButton = document.querySelector('button[type="submit"]');
+            
+            if (textArea && submitButton && textArea.value.trim()) {
+                event.preventDefault();
+                submitButton.click();
+            }
+        }
+    });
     </script>
     '''
     
@@ -314,9 +334,10 @@ with col_left:
         with st.form("chat_form", clear_on_submit=True):
             c_text, c_btn = st.columns([6, 1])
             with c_text:
-                 user_text = st.text_area("Type your message…", label_visibility="collapsed",
-                                         placeholder="I'm a product designer who led a mobile redesign at…",
-                                         key="user_input_text", height=40)
+                user_text = st.text_area("Type your message…", label_visibility="collapsed",
+                                        placeholder="I'm a product designer who led a mobile redesign at…",
+                                        key="user_input_text", height=40, 
+                                        help="Press Enter to send (Shift+Enter for new line)")
             with c_btn:
                 send = st.form_submit_button("➤")
             if send and user_text.strip():
